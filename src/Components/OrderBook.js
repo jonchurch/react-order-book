@@ -31,6 +31,14 @@ class OrderBook extends Component {
       });
     }
 
+	  function spreadPrice(bid, ask) {
+		  if (ask && bid) {
+			  return ask.price - bid.price
+		  } else {
+			  return null
+		  }
+	  }
+
     return (
       <div className="OrderBook">
         <table>
@@ -46,6 +54,12 @@ class OrderBook extends Component {
           <tbody>
             {renderOrders(AskOrder, askOrders).reverse()}
           </tbody>
+		<tbody> 
+			<tr>
+		<td className="spread align-right"> Spread:</td>
+		<td className="spread align-left">{spreadPrice(bidOrders[0], askOrders[0])}</td>
+			</tr>
+		</tbody>
           <tbody>
             {renderOrders(BidOrder, bidOrders)}
           </tbody>

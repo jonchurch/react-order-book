@@ -5,14 +5,9 @@ class BidOrder extends AbstractOrder {
 
   render() {
     return (
-      <tr className="bid">
-        <td className="fill-bid" style={{backgroundSize: this.getPercentage() + "% 100%"}}>
-          {this.props.cumulative}
-        </td>
+      <tr className="bid fill-bid" style={{backgroundSize: this.getPercentage() + "% 100%"}}>
         <td>{this.props.quantity}</td>
         <td>{this.props.price}</td>
-        <td></td>
-        <td></td>
       </tr>
     );
   }
