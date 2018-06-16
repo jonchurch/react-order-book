@@ -33,20 +33,20 @@ class OrderBook extends Component {
 
 	  function spreadPrice(bid, ask) {
 		  if (ask && bid) {
-			  return ask.price - bid.price
+			  return Number(ask.price - bid.price).toFixed(8)
 		  } else {
 			  return null
 		  }
 	  }
 
     return (
+		<div id="scroll-tainer">
       <div className="OrderBook">
         <table>
           <thead>
             <tr>
               <th>Depth</th>
               <th>Price</th>
-              <th></th>
             </tr>
           </thead>
           <tbody>

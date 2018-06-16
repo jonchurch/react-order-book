@@ -1,8 +1,13 @@
 #root {
-  width: 450px;
+  width: 250px;
   text-align: left;
   margin: 0px auto;
   font-size: 14px;
+}
+
+#scroll-tainer {
+  height: 350px;
+  overflow: auto;
 }
 
 h1.instrument {
@@ -41,7 +46,7 @@ h1.instrument {
 
 .OrderBook table tbody tr.fill-ask {
   background-repeat: no-repeat;
-  background-position: 100% 100%;
+  /* background-position: 100% 100%; */
   background-image: linear-gradient(to left, #ffcccc 100%, white 0%);
   background-size: 0%;
 }
