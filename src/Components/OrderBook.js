@@ -44,11 +44,9 @@ class OrderBook extends Component {
         <table>
           <thead>
             <tr>
-              <th>Buy cumulative</th>
-              <th>Buy quantity</th>
+              <th>Depth</th>
+              <th>Price</th>
               <th></th>
-              <th>Sell quantity</th>
-              <th>Sell cumulative</th>
             </tr>
           </thead>
           <tbody>

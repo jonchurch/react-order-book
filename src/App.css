@@ -1,5 +1,5 @@
 #root {
-  width: 750px;
+  width: 450px;
   text-align: left;
   margin: 0px auto;
   font-size: 14px;
@@ -42,7 +42,7 @@ h1.instrument {
 .OrderBook table tbody tr.fill-ask {
   background-repeat: no-repeat;
   background-position: 100% 100%;
-  background-image: linear-gradient(to right, #ffcccc 100%, white 0%);
+  background-image: linear-gradient(to left, #ffcccc 100%, white 0%);
   background-size: 0%;
 }
 
