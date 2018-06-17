@@ -7,6 +7,7 @@ import BidOrder from './BidOrder';
 class OrderBook extends Component {
 
   render() {
+
     function sumQuantities(orders) {
       return orders.reduce((total, order) => total + order.quantity, 0);
     }
@@ -21,9 +22,16 @@ class OrderBook extends Component {
     let askOrders = deepCopyArrayOfObj(this.props.askOrders).sort((a, b) => a.price - b.price); // ascending order
     let bidOrders = deepCopyArrayOfObj(this.props.bidOrders).sort((a, b) => b.price - a.price); // descending order
 
-
     function renderOrders(ComponentClass, orders) {
       let cumulative = 0;
+		if (orders.length === 0) {
+			const dummy = {
+				price: 0,
+				quantity: 0,
+			}
+		
+			orders = new Array(20).fill().map(() => dummy)
+		}
       return orders.map((order, index) => {
         order.cumulative = (cumulative += order.quantity);
         order.maxCumulative = maxCumulative;
@@ -49,7 +57,7 @@ class OrderBook extends Component {
             </tr>
           </thead>
 		</table>
-		<div ref="scrollTainer" id="scroll-tainer">
+		<div ref="scroller" id="scroll-tainer">
 		<table ref="orders">
           <tbody>
             {renderOrders(AskOrder, askOrders).reverse()}
@@ -70,12 +78,8 @@ class OrderBook extends Component {
   }
 
 componentDidMount() {
-	setTimeout(() => {
-
-	this.refs.scrollTainer.scrollTop = 383
-		console.log(this.refs.scrollTainer.scrollTop)
-	},1500)
-	console.log(this.refs.scrollTainer.scrollTop)
+	 this.refs.scroller.scrollTop = (this.refs.scroller.scrollHeight - this.refs.scroller.clientHeight) / 2
+	console.log(this.refs.scroller.scrollTop)
 }
 }
 
