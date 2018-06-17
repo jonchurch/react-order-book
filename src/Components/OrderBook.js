@@ -40,7 +40,6 @@ class OrderBook extends Component {
 	  }
 
     return (
-		<div id="scroll-tainer">
       <div className="OrderBook">
         <table>
           <thead>
@@ -49,10 +48,13 @@ class OrderBook extends Component {
               <th>Price</th>
             </tr>
           </thead>
+		</table>
+		<div ref="scrollTainer" id="scroll-tainer">
+		<table ref="orders">
           <tbody>
             {renderOrders(AskOrder, askOrders).reverse()}
           </tbody>
-		<tbody> 
+		<tbody ref="spreadBody"> 
 			<tr>
 		<td className="spread align-right"> Spread:</td>
 		<td className="spread align-left">{spreadPrice(bidOrders[0], askOrders[0])}</td>
@@ -66,6 +68,15 @@ class OrderBook extends Component {
 		</div>
     );
   }
+
+componentDidMount() {
+	setTimeout(() => {
+
+	this.refs.scrollTainer.scrollTop = 383
+		console.log(this.refs.scrollTainer.scrollTop)
+	},1500)
+	console.log(this.refs.scrollTainer.scrollTop)
+}
 }
 
 OrderBook.propTypes = {
