@@ -8,7 +8,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      instrument: "XBTUSD",
+      instrument: "TRXBTC",
+	  base_url: 'wss://stream.binance.com:9443',
       askOrders: [],
       bidOrders: []
     };
@@ -16,19 +17,21 @@ class App extends Component {
 
   handleData(rawData) {
     let data = JSON.parse(rawData);
+	  // console.log({data})
     if (!data.data) {
       return;
     }
-    let orderData = data.data[0];
+
+    let orderData = data.data
 
     let askOrders = orderData.asks.map(ask => ({
-      price: ask[0],
-      quantity: ask[1]
+      price: parseFloat(ask[0]),
+      quantity: parseFloat(ask[1])
     }));
 
     let bidOrders = orderData.bids.map(bid => ({
-      price: bid[0],
-      quantity: bid[1]
+      price: parseFloat(bid[0]),
+      quantity: parseFloat(bid[1])
     }));
 
     this.setState({
@@ -42,7 +45,7 @@ class App extends Component {
       <div className="App">
         <h1 className="instrument">{this.state.instrument}</h1>
         <Websocket
-          url='wss://www.bitmex.com/realtime?subscribe=orderBook10:XBTUSD'
+          url={`${this.state.base_url}/stream?streams=${this.state.instrument.toLowerCase()}@depth20`}
           onMessage={this.handleData.bind(this)}
           />
         <OrderBook askOrders={this.state.askOrders} bidOrders={this.state.bidOrders} />
